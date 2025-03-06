@@ -22,8 +22,6 @@
 ### Technologies Used
 
 - Languages-html,css,js
-- [Frameworks used]-no
-- [Libraries used]-no
 - [Tools used]-Vs code,browser developer tools
 
 
