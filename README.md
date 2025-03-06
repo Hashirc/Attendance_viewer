@@ -1,4 +1,4 @@
-# [Attendance viewer] 🎯
+# Attendance viewer 🎯
 
 
 ## Basic Details
