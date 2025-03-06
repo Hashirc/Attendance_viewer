@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College Attendance Viewer</title>
+<style>
+    body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+    .container { max-width: 800px; margin: 30px auto; background-color: #fff; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; }
+    h2, h3 { text-align: center; color: #333; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; }
+    input, select, button { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px; }
+    button { background-color: #5cb85c; color: #fff; cursor: pointer; }
+    button:hover { background-color: #4cae4c; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { padding: 10px; border: 1px solid #ddd; text-align: center; }
+    th { background-color: #f8f8f8; }
+    hr { margin: 40px 0; border: 0; border-top: 2px solid #ddd; }
+</style>
+</head>
+
+<body>
+
+<!-- Student Section -->
+<div class="container">
+    <h2>College Attendance Viewer</h2>
+    <form id="attendance-form">
+        <h3>For Students</h3>
+        <div class="form-group">
+            <label for="course">Select Course:</label>
+            <select id="course" required>
+                <option value="">-- Choose a Course --</option>
+                <option value="MCA">MASTERS IN COMPUTER APPLICATION</option>
+                <option value="CS">COMPUTER SCIENCE</option>
+                <option value="IT">INFORMATION TECHNOLOGY</option>
+                <option value="EC">ELECTRONICS</option>
+                <option value="EEE">ELECTRICAL AND ELECTRONICS</option>
+                <option value="CE">CIVIL ENGINEERING</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="student-id">Enter Student ID:</label>
+            <input type="text" id="student-id" placeholder="e.g., 12345" required>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <script>
+        const form = document.getElementById("attendance-form");
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const department = document.getElementById("course").value;
+            const studentId = document.getElementById("student-id").value;
+    
+            if (department && studentId) {
+                // Redirect to attendance.html with department and student ID as query parameters
+                window.location.href = `attendance.html?department=${department}&studentId=${studentId}`;
+            } else {
+                alert("Please fill out all fields.");
+            }
+        });
+    </script>
+
+<!-- Teacher Section -->
+<div class="container">
+    <h3>For Teachers</h3>
+    <form id="upload-form">
+        <div class="form-group">
+            <label for="teacher-id">Enter Teacher ID:</label>
+            <input type="text" id="teacher-id" placeholder="e.g., T123" required>
+        </div>
+        <div class="form-group">
+            <label for="upload-course">Select Course:</label>
+            <select id="upload-course" required>
+                <option value="">-- Choose a department--</option>
+                <option value="MCA">MASTERS IN COMPUTER APPLICATION</option>
+                <option value="CS">COMPUTER SCIENCE</option>
+                <option value="IT">INFORMATION TTECHNOLOGY</option>
+                <option value="EC">ELECTRONICS</option>
+                <option value="EEE">ELECTRICAL AND ELECTRONICS</option>
+                <option value="CE">CIVIL ENGINEERING</option>
+            </select>
+        </div>
+       
+        <button type="submit">Upload Attendance</button>
+    </form>
+</div>
+
+</body>
+</html>

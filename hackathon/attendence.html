@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance Details</title>
+<style>
+    body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+    .container { max-width: 800px; margin: 30px auto; background-color: #fff; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; }
+    h2 { text-align: center; color: #333; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { padding: 10px; border: 1px solid #ddd; text-align: center; }
+    th { background-color: #f8f8f8; }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Attendance Details</h2>
+    <div id="student-info"></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Attendance (%)</th>
+            </tr>
+        </thead>
+        <tbody id="attendance-table">
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Extract query parameters
+    const params = new URLSearchParams(window.location.search);
+    const department = params.get("department");
+    const studentId = params.get("studentId");
+
+    // Hardcoded data for demonstration
+    const attendanceData = {
+        "MCA": { 
+            "subjects": ["Data Structures", "Algorithms", "Web Development"],
+            "attendance": [85, 90, 75]
+        },
+        "CS": { 
+            "subjects": ["Operating Systems", "Networks", "Database Management"],
+            "attendance": [88, 92, 80]
+        },
+        "IT": { 
+            "subjects": ["Cloud Computing", "Cyber Security", "Data Mining"],
+            "attendance": [80, 85, 70]
+        }
+    };
+
+    // Display student info
+    document.getElementById("student-info").innerHTML = `
+        <p><strong>Student ID:</strong> ${studentId}</p>
+        <p><strong>Course:</strong> ${department}</p>
+    `;
+
+    const tableBody = document.getElementById("attendance-table");
+    const data = attendanceData[department];
+
+    if (data) {
+        data.subjects.forEach((subject, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${subject}</td>
+                <td>${data.attendance[index]}%</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    } else {
+        tableBody.innerHTML = <tr><td colspan="2">No data available for this course.</td></tr>;
+    }
+</script>
+
+</body>
+</html>
